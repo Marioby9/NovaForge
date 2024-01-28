@@ -36,16 +36,14 @@
         <img src="@/assets/img/logos/whiteLogo.png" alt="logo" class="w-[40%]">
     </div>
     <RouterLink to="/"><font-awesome-icon icon="arrow-left" class="fixed top-0 left-0 m-10 text-white text-2xl"/></RouterLink>
-    <OverlayComp/>
 </template>
 
 <script setup>
     import { ref } from 'vue';
     import { RouterLink } from 'vue-router';
+    import router from '@/router';
     import { auth, addUserConfig } from '@/fb.js';
-    import { createUserWithEmailAndPassword } from 'firebase/auth';
-    import OverlayComp from '@/components/OverlayComp.vue';
-    
+    import { createUserWithEmailAndPassword } from 'firebase/auth';    
     //
 
     const username = ref('')
@@ -68,6 +66,7 @@
                         username: username.value
                     })
                     isError.value = false
+                    router.push({ path: '/myspaces' })
                 } catch (error) {
                     errorMsj.value = 'Error. El usuario ya tiene una cuenta'
                     isError.value = true

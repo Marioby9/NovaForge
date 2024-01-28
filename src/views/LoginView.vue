@@ -30,15 +30,14 @@
         </div>
     </div>
     <RouterLink to="/"><font-awesome-icon icon="arrow-left" class="fixed top-0 left-0 m-10 text-white text-2xl"/></RouterLink>
-    <OverlayComp/>
 </template>
 
 <script setup>
     import { ref } from 'vue';
     import { RouterLink } from 'vue-router'
+    import router from '@/router';
     import {auth} from '@/fb.js'
     import { signInWithEmailAndPassword } from 'firebase/auth';
-    import OverlayComp from '@/components/OverlayComp.vue'
 
     //
 
@@ -57,6 +56,7 @@
                 await signInWithEmailAndPassword(auth, email.value, password.value)
                 console.log(auth.currentUser.email)
                 isError.value = false
+                router.push({ path: '/myspaces' })
             } catch (error) {
                 errorMsj.value = 'Error. Datos incorrectos'
                 isError.value = true

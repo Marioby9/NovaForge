@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth'
-import { getFirestore, onSnapshot, query, where, doc, setDoc, collection } from "firebase/firestore"
+import { getFirestore, onSnapshot, query, doc, setDoc, collection, getDoc, addDoc, updateDoc, deleteDoc, where } from "firebase/firestore"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,3 +28,14 @@ export const auth = getAuth()
 
 export const addUserConfig = (uid, config) => setDoc(doc(collection(db, 'config'), uid), config)
 export const getUserConfig = (uid, callback) => onSnapshot(query(doc(db, 'config', uid)), callback)
+
+export const addSpace = space => addDoc(collection(db, 'spaces'), space)
+export const getSpaces = (uid, callback) => onSnapshot(query(collection(db, 'spaces'), where("uid", "==", uid)), callback)
+export const getSpace = (id, callback) => onSnapshot(query(doc(db, 'spaces', id)), callback)
+export const deleteSpace = id => deleteDoc(doc(db, "spaces", id))
+
+export const addExecutor = (executor) => addDoc(collection(db, 'executors'), executor)
+export const getExecutors = (spaceID, callback) => onSnapshot(query(collection(db, 'executors'), where("space", "==", spaceID)), callback)
+
+
+export const addSensor = (sensor) => addDoc(collection(db, 'sensors'), sensor)

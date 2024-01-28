@@ -26,6 +26,7 @@ export default {
       'lightOrange': '#ffa640',
       '--primary-300':'#acc2ef',
       '--accent-200':'#cee8ff',  
+      'overlayBlue':'#081321cc',
     }
   },
   plugins: [],

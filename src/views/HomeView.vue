@@ -12,15 +12,11 @@
       </div>
     </div>
   </div>
-
   
-  <OverlayComp/>
-    
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router';
-import OverlayComp from '@/components/OverlayComp.vue';
 </script>
 
 <style scoped>
