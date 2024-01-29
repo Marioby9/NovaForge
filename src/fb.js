@@ -32,10 +32,18 @@ export const getUserConfig = (uid, callback) => onSnapshot(query(doc(db, 'config
 export const addSpace = space => addDoc(collection(db, 'spaces'), space)
 export const getSpaces = (uid, callback) => onSnapshot(query(collection(db, 'spaces'), where("uid", "==", uid)), callback)
 export const getSpace = (id, callback) => onSnapshot(query(doc(db, 'spaces', id)), callback)
-export const deleteSpace = id => deleteDoc(doc(db, "spaces", id))
+export const deleteSpace = spaceID => {
+  deleteDoc(doc(db, "spaces", spaceID))
+  onSnapshot(query(collection(db, 'executors'), where("space", "==", spaceID)), (docs) => docs.forEach(executor => deleteDoc(doc(db, "executors", executor.id))))
+  onSnapshot(query(collection(db, 'sensors'), where("space", "==", spaceID)), (docs) => docs.forEach(sensor => deleteDoc(doc(db, "sensors", sensor.id))))
+}
 
 export const addExecutor = (executor) => addDoc(collection(db, 'executors'), executor)
 export const getExecutors = (spaceID, callback) => onSnapshot(query(collection(db, 'executors'), where("space", "==", spaceID)), callback)
-
+export const updateExecutor = (executorID, executor) => updateDoc(doc(db, "executors", executorID), executor)
+export const deleteExecutor = id => deleteDoc(doc(db, "executors", id))
 
 export const addSensor = (sensor) => addDoc(collection(db, 'sensors'), sensor)
+export const getSensors = (spaceID, callback) => onSnapshot(query(collection(db, 'sensors'), where("space", "==", spaceID)), callback)
+export const updateSensor = (sensorID, sensor) => updateDoc(doc(db, "sensors", sensorID), sensor)
+export const deleteSensor = id => deleteDoc(doc(db, "sensors", id))
