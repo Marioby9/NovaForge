@@ -7,7 +7,7 @@
         <input
           type="text"
           id="nombre"
-          placeholder="Ej: Salón"
+          placeholder="Ej: Persianas"
           class="p-2 rounded-md text-darkBlack"
           v-model="name"
         />

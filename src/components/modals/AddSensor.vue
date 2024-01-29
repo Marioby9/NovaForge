@@ -7,7 +7,7 @@
           <input
             type="text"
             id="nombre"
-            placeholder="Ej: Salón"
+            placeholder="Ej: Termómetro"
             class="p-2 rounded-md w-full text-darkBlack"
             v-model="name"
           />
@@ -21,11 +21,11 @@
             </div>
             <div class="flex items-center gap-3">
                 <label>Valor: </label>
-                <input class="w-full text-darkBlack p-2 rounded-md" type="text" placeholder="Valor">
-                <font-awesome-icon class="cursor-pointer" :icon="unit.icon" @click="deleteSpace(props.id)"/>
+                <input class="w-full text-darkBlack p-2 rounded-md" type="number" :placeholder="unit.unitMessure" v-model="value">
+                <font-awesome-icon class="w-20" :icon="unit.icon" @click="deleteSpace(props.id)"/>
             </div>
         </div>
-        <p class="text-bone" v-if="isError">Error. Debes introducir algún valor</p>
+        <p class="text-bone" v-if="isError">Error. Debes rellenar los campos</p>
         <div class="mt-4 flex gap-8">
           <p
             class="p-2 rounded-md hover:scale-[1.03] transition-transform duration-300 ease-in-out cursor-pointer"
@@ -52,27 +52,28 @@
   
   const props = defineProps(['space'])
   const emit = defineEmits(['close', 'add'])
-  const name = ref('')
   const isError = ref(false)
   const sensorModal = ref(null)
 
   const units = [
     {name: 'Temperatura', unitMessure: 'ºC', icon: 'temperature-three-quarters'},
     {name: 'Humedad', unitMessure: '%', icon: 'droplet'},
-    {name: 'CO2', unitMessure: 'ppm', icon: ''},
+    {name: 'CO2', unitMessure: 'ppm', icon: 'wind'},
     {name: 'Luminosidad', unitMessure: 'Lx', icon: 'lightbulb'},
-    {name: 'Sonido', unitMessure: 'dB', icon: ''},
-    {name: 'Presión', unitMessure: 'Pa', icon: ''}
-
+    {name: 'Sonido', unitMessure: 'dB', icon: 'volume-high'},
+    {name: 'Presión', unitMessure: 'Pa', icon: 'gauge'}
   ]
   const unit = ref(units[0])
+  const name = ref('')
+  const value = ref(null)
 
   
   //
   
   const clickAddSensor = () => {
-    if (name.value != '') {
-      //emit('add', {name: name.value, on: isActive.value })
+    if (name.value != '' && value.value != '' && value.value != null) {
+      emit('add', {name: name.value, unit: unit.value.name, value: value.value})
+      isError.value = false
     } else {
       isError.value = true
     }
