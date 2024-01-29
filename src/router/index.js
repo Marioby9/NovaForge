@@ -70,7 +70,6 @@ router.beforeEach((to, from, next) => {
     if(auth.currentUser) {
         next()
     } else {
-      console.log('forbidden')
       next('/')
     }
   } else {
