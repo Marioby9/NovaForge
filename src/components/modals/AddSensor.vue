@@ -20,12 +20,12 @@
                 </select>
             </div>
             <div class="flex items-center gap-3">
-                <label>Valor: </label>
-                <input class="w-full text-darkBlack p-2 rounded-md" type="number" :placeholder="unit.unitMessure" v-model="value">
+                <label>Medida: </label>
+                <p>{{ unit.unitMessure }}</p>
                 <font-awesome-icon class="w-20" :icon="unit.icon" @click="deleteSpace(props.id)"/>
             </div>
         </div>
-        <p class="text-bone" v-if="isError">Error. Debes rellenar los campos</p>
+        <p class="text-bone" v-if="isError">Error. Debes introducir algún valor</p>
         <div class="mt-4 flex gap-8">
           <p
             class="p-2 rounded-md hover:scale-[1.03] transition-transform duration-300 ease-in-out cursor-pointer"
@@ -65,14 +65,13 @@
   ]
   const unit = ref(units[0])
   const name = ref('')
-  const value = ref(null)
 
   
   //
   
   const clickAddSensor = () => {
-    if (name.value != '' && value.value != '' && value.value != null) {
-      emit('add', {name: name.value, unit: unit.value.name, value: value.value})
+    if (name.value != '') {
+      emit('add', {name: name.value, unit: unit.value.name, value: 0})
       isError.value = false
     } else {
       isError.value = true

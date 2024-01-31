@@ -6,8 +6,7 @@
             <p class="w-[30%]">{{ sensor.id }}</p>
             <div class="w-[20%] flex items-center gap-2">
             <p>{{ sensor.unit }}: </p>
-            <input type="number" class="w-16 p-1 rounded-md" :placeholder="value" v-model="value" v-if="isEditing">
-            <p v-if="!isEditing">{{ sensor.value }} </p>
+            <p>{{ sensor.value }} </p>
             </div>
           <div class="w-[20%] h-full flex gap-6 items-center justify-end">
             <font-awesome-icon class="cursor-pointer" icon="pen-to-square" @click="isEditing = true" v-if="!isEditing" />
@@ -25,15 +24,14 @@
 
     const {sensor} = defineProps(['sensor'])
     const isEditing = ref(false)
-    const value = ref(sensor.value)
     const name = ref(sensor.name)
     
     //
 
     const clickUpdateSensor = () => {
-      if(name.value != '' && value.value != '' && value.value != null){
+      if(name.value != ''){
         sensor.name = name.value
-        updateSensor(sensor.id, {name: name.value, unit: sensor.unit, value: value.value , space: sensor.space})
+        updateSensor(sensor.id, {name: name.value, unit: sensor.unit, value: sensor.value , space: sensor.space})
         isEditing.value = false
       }
     }
