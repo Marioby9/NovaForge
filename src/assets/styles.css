@@ -22,3 +22,5 @@ html, body, #app { @apply full }
 
 .modal-bg { @apply fixed top-0 left-0 w-full h-full flex justify-center items-center bg-overlayBlack }
 .modal { @apply w-[35%] relative bg-black text-white text-lg p-12 flex flex-col items-center rounded-2xl gap-10}
+
+.icnBtn { @apply hover:scale-[1.05] transition-all duration-100 ease-in-out}

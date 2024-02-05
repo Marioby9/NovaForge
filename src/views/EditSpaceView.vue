@@ -15,7 +15,7 @@
         </h2>
       </div>
 
-      <div v-if="sensors[0] || executors[0]" class="devices flex flex-col gap-5 w-full h-60 p-5 text-darkBlack font-semibold bg-lightBlue  rounded-md mt-2 overflow-y-scroll max-h-60">
+      <div v-if="sensors[0] || executors[0]" class="devices flex flex-col gap-5 w-full h-56 pr-3 text-darkBlack font-semibold  rounded-md mt-4 overflow-y-scroll max-h-56">
         <ExecutorCard v-for="(elm) in executors" :key="elm.id" :executor="elm"/>
         <SensorCard v-for="(elm) in sensors" :key="elm.id" :sensor="elm"/>
       </div>
@@ -107,7 +107,7 @@ onMounted(() => {
 
 /* Estilo del pulgar (thumb) de la barra de desplazamiento */
 ::-webkit-scrollbar-thumb {
-  @apply bg-orange rounded-sm;
+  @apply bg-lightBlue rounded-sm;
 }
 
 /* Estilo de la pista (track) de la barra de desplazamiento */

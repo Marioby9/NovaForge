@@ -28,7 +28,7 @@
       user.uid = auth.currentUser.uid
       user.username = doc.data().username
     })
-    router.push({ path: 'myspaces' })
+    router.push({ path: '/myspaces' })
   }
 })
 

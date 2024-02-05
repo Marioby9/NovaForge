@@ -10,9 +10,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 
-import { faEye, faEyeSlash, faArrowLeft, faTrash, faPenToSquare, faTemperatureThreeQuarters, faDroplet, faLightbulb, faWind, faVolumeHigh, faGauge, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faArrowLeft, faTrash, faPenToSquare, faTemperatureThreeQuarters, faDroplet, faLightbulb, faWind, faVolumeHigh, faGauge, faCheck, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-library.add(faEye, faEyeSlash, faGithub, faArrowLeft, faTrash, faPenToSquare, faTemperatureThreeQuarters, faDroplet, faLightbulb, faWind, faVolumeHigh, faGauge, faCheck )
+library.add(faEye, faEyeSlash, faGithub, faArrowLeft, faTrash, faPenToSquare, faTemperatureThreeQuarters, faDroplet, faLightbulb, faWind, faVolumeHigh, faGauge, faCheck, faGear, faArrowLeft )
 
 
 const app = createApp(App)

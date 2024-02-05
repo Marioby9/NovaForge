@@ -1,6 +1,7 @@
 <template>
     <div
-          class="flex gap-5 text-lg border-l-4 h-16 border-solid border-darkBlack p-3 items-center"
+          class="flex gap-5 text-lg border-l-8 h-16 border-solid border-orange p-4 items-center bg-bone rounded-md"
+          ref="executorCard"
           >
             <input type="text" class="w-[25%] p-1 rounded-md" :placeholder="name" v-model="name" v-if="isEditing">
             <p class="w-[25%]" v-if="!isEditing" >{{ executor.name }}</p>
@@ -15,16 +16,17 @@
             <p>{{ executor.on ? 'Encendido' : 'Apagado' }}</p>
             </div>
           <div class="w-[20%] h-full flex gap-6 items-center justify-end">
-            <font-awesome-icon class="cursor-pointer" icon="pen-to-square" @click="isEditing=true" v-if="!isEditing" />
-            <font-awesome-icon class="cursor-pointer" icon="check" @click="updateName" v-if="isEditing" />
-            <font-awesome-icon class="cursor-pointer" icon="trash" @click="deleteExecutor(executor.id)" />
+            <font-awesome-icon class="cursor-pointer icnBtn" icon="pen-to-square" @click="isEditing=true" v-if="!isEditing" />
+            <font-awesome-icon class="cursor-pointer icnBtn" icon="check" @click="updateName" v-if="isEditing" />
+            <font-awesome-icon class="cursor-pointer icnBtn" icon="trash" @click="deleteExecutor(executor.id)" />
           </div>
     </div>
 </template>
 
 <script setup>
     import { watch, ref } from 'vue';
-    import { deleteExecutor, updateExecutor } from '@/fb';
+    import { deleteExecutor, updateExecutor } from '@/fb'
+    import { onClickOutside } from '@vueuse/core'
 
     //
 
@@ -32,6 +34,7 @@
     const isEditing = ref(false)
     const isOn = ref(executor.on)
     const name = ref(executor.name)
+    const executorCard = ref(null)
 
     //
 
@@ -45,7 +48,12 @@
         updateExecutor(executor.id, {name: name.value, on: isOn.value, space: executor.space})
         isEditing.value = false
       }
-    } 
+    }
+
+    onClickOutside(executorCard, () =>{
+      isEditing.value = false
+      name.value = executor.name
+    })
     
 </script>
 
