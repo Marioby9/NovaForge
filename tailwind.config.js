@@ -10,7 +10,7 @@ export default {
       'transparent': 'transparent',
       'darkBlack': '#0a0a0a',
       'black': '#222',
-      'overlayBlack': 'rgba(0, 0, 0, 0.8)',
+      'overlayBlack': 'rgba(0, 0, 0, 0.9)',
       'coal':  '#2b2b2b',
       'gray': '#393E46',
       'white': '#fff',
